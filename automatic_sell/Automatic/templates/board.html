@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>小助手</title>
+   <style>
+       .container{
+           width:25%;
+           height:200px;
+           background-color:gray;
+       }
+       .lb{
+           vertical-align: top;
+       }
+       .cc{
+           margin:10px;
+       }
+       .container1{
+           width:25%;
+           height:600px;
+           background-color:white;
+       }
+   </style>
+</head>
+<body>
+   <div class="container">
+       <form action="/msg/" method="POST">
+           {% csrf_token%}
+           <div class="cc">
+               <label class="lb"  for ="content">内容</label>
+               <textarea id="content"  name="content" ></textarea>
+           </div>
+           <input type="submit"  value="提交">
+       </form>
+
+   </div>
+   <div class="container1">
+       <h3>发送记录</h3>
+       {% if messages %}
+       <ol>
+          {% for message in messages %}
+           <li>
+{#               <p>在 {{message.date}}发送</p>#}
+           <div id="message">
+               <p>{{message.content}}</p>
+           </div>
+           </li>
+
+           {%endfor%}
+
+       </ol>
+       {% endif %}
+
+   </div>
+</body>
+</html>
